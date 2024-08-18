@@ -1,0 +1,9 @@
+body {
+  background-color: blueviolet;
+}
+.box {
+  background: grey;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+}
