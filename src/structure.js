@@ -9,11 +9,15 @@ function updatePage(response) {
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = response.data.wind.speed;
   let timeElement = document.querySelector("#time");
-  let date = new Date(response.data.time);
+  let date = new Date(response.data.time * 1000);
   timeElement.innerHTML = formatDate(date);
-  console.log(formatDate(date));
+  let icon = document.querySelector("#temp");
+  icon.innerHTML = response.data.condition.icon_url;
+  console.log(response.data);
 }
 function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -24,9 +28,7 @@ function formatDate(date) {
     "Saturday",
   ];
   let day = days[date.getDay()];
-  let minutes = date.getMinutes();
-  let hours = date.getHours();
-  console.log(date.getHours);
+
   return `${day} ${hours}:${minutes}`;
 }
 
