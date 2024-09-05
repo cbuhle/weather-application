@@ -30,3 +30,8 @@ img {
 #celcius {
   font-size: 28px;
 }
+.forecast {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
