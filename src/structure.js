@@ -11,8 +11,18 @@ function updatePage(response) {
   let timeElement = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
   timeElement.innerHTML = formatDate(date);
+  function showIcon(src, width, height, alt) {
+    let img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    Img.height = height;
+    Img.alt = alt;
+    document.body.appendChild(img);
+  }
+  showIcon(response.data.condition.icon_url);
   let icon = document.querySelector("#temp");
-  icon.innerHTML = response.data.condition.icon_url;
+  //let icon = document.createElement("Icon_Url");
+  //icon.innerHTML = response.data.condition.icon_url;
   console.log(response.data);
 }
 function formatDate(date) {
@@ -47,3 +57,22 @@ function submitCity(event) {
 }
 let searchForm = document.querySelector("#form");
 searchForm.addEventListener("submit", submitCity);
+function displayForecast() {
+  let days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+  let forecastHTML = "";
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <li>
+                <div class="forecast-date">
+                <div class="forecast-day"> ${day}</div>
+                <div class="forecast-icon">⛅</div>
+                <div class="forecast-temperature"> 20℃</div>
+                </div></li>
+             `;
+  });
+}
+let forecast = document.querySelector("#forecast");
+console.log(forecast);
+
+//forecast.innerHTML = forecastHTML;
