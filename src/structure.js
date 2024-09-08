@@ -11,23 +11,20 @@ function updatePage(response) {
   let timeElement = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
   timeElement.innerHTML = formatDate(date);
-  function showIcon(src, width, height, alt) {
-    let img = document.createElement("img");
-    img.src = src;
-    img.width = width;
-    Img.height = height;
-    Img.alt = alt;
-    document.body.appendChild(img);
-  }
-  showIcon(response.data.condition.icon_url);
   let icon = document.querySelector("#temp");
-  //let icon = document.createElement("Icon_Url");
-  //icon.innerHTML = response.data.condition.icon_url;
+  icon.innerHTML = `<img src = "${response.data.condition.icon_url}" />`;
   console.log(response.data);
 }
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let days = [
     "Sunday",
     "Monday",
@@ -71,8 +68,10 @@ function displayForecast() {
                 </div></li>
              `;
   });
+  let forecast = document.querySelector("#forecast");
+  forecast.innerHTML = forecastHTML;
 }
-let forecast = document.querySelector("#forecast");
+displayForecast();
 console.log(forecast);
 
 //forecast.innerHTML = forecastHTML;
