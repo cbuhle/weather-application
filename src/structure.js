@@ -52,18 +52,18 @@ function submitCity(event) {
   city.innerHTML = searchInput.value;
   searchCity(searchInput.value);
 }
-let searchForm = document.querySelector("#form");
-searchForm.addEventListener("submit", submitCity);
+
 function getForecast(city) {
-  let apiKey = "34e269e9f408e8fa6ft73afaob64bf6c";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  let key = "34e269e9f408e8fa6ft73afaob64bf6c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${key}&units=metric`;
   console.log(apiUrl);
-  //axios(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayForecast);
 }
-function displayForecast() {
-  //console.log(response.data);
+function displayForecast(response) {
+  console.log(response.data);
   let days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   let forecastHTML = "";
+
   days.forEach(function (day) {
     forecastHTML =
       forecastHTML +
@@ -78,5 +78,7 @@ function displayForecast() {
   let forecast = document.querySelector("#forecast");
   forecast.innerHTML = forecastHTML;
 }
-displayForecast();
+let searchForm = document.querySelector("#form");
+searchForm.addEventListener("submit", submitCity);
 getForecast();
+displayForecast();
